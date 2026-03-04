@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const programsData = [
   {
@@ -60,15 +61,15 @@ export default function Programs() {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         <div className="text-center mb-16 max-w-3xl">
-          <h2 className="text-4xl md:text-[32px] font-semibold text-[#d00736] mb-4">
+          <h2 className="text-xl md:text-[32px] font-semibold text-[#d00736] mb-4">
             Undergraduate Programs
           </h2>
-          <p className="text-[#555] text-lg md:text-sm font-medium">
+          <p className="text-[#555] text-sm md:text-sm font-medium">
             Practical learning and personal growth to build skills, mindset, and future-ready leadership.
           </p>
         </div>
 
-        <div className="w-full flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="w-full flex flex-col lg:flex-row gap-4 lg:gap-12">
           
           <div className="w-full lg:w-1/3 flex flex-col gap-4">
             {programsData.map((program, idx) => {
@@ -76,85 +77,140 @@ export default function Programs() {
               const isFoundation = program.title === "Rishihood Foundation";
               
               return (
-                <button
-                  key={idx}
-                  onClick={() => setActiveIndex(idx)}
-                  className={`text-left w-full transition-all duration-300 cursor-pointer ${
-                    isActive 
-                      ? "bg-[#fcf7ef] border-l-4 border-[#d00736] rounded-xl py-5 px-6" 
-                      : isFoundation
-                        ? "bg-white border border-[#d00736] shadow-sm rounded-xl py-5 px-6 hover:shadow-md"
-                        : "bg-white border border-gray-100 shadow-sm rounded-xl py-5 px-6 hover:border-gray-300 hover:shadow-md"
-                  }`}
-                >
-                  <span className={`text-lg md:text-lg ${
-                    isActive ? "text-[#111] font-semibold" 
-                    : isFoundation ? "text-[#d00736] font-medium"
-                    : "text-[#777] font-light"
-                  }`}>
-                    {program.title}
-                  </span>
-                </button>
+                <div key={idx} className="flex flex-col">
+                  <button
+                    onClick={() => setActiveIndex(isActive ? -1 : idx)}
+                    className={`text-left w-full transition-all duration-300 cursor-pointer ${
+                      isActive && !isFoundation
+                        ? "bg-[#fcf7ef] lg:border-l-4 lg:border-[#d00736] md:border-l-4 md:border-[#d00736] rounded-t-xl lg:rounded-xl py-5 px-6 flex justify-between items-center" 
+                        : isFoundation
+                          ? "bg-white border border-[#d00736] shadow-sm rounded-xl py-5 px-6 hover:shadow-md flex justify-between items-center"
+                          : "bg-white border border-gray-100 shadow-sm rounded-xl py-5 px-6 hover:border-gray-300 hover:shadow-md flex justify-between items-center"
+                    }`}
+                  >
+                    <span className={`text-lg md:text-lg ${
+                      isActive && !isFoundation ? "text-[#111] font-semibold" 
+                      : isFoundation ? "text-[#d00736] font-medium"
+                      : "text-[#111] font-medium lg:text-[#777] lg:font-light"
+                    }`}>
+                      {program.title}
+                    </span>
+                    <div className="lg:hidden text-[#d00736]">
+                      {isActive ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="lg:hidden w-full bg-[#fcf7ef] rounded-b-xl px-5 pb-6 pt-2 overflow-hidden"
+                      >
+                        <div className="w-full h-[200px] rounded-xl overflow-hidden shadow-sm mb-6">
+                          <img 
+                            src={program.image} 
+                            alt={program.title} 
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        
+                        <p className="text-[#555] text-[15px] leading-relaxed font-light mb-6">
+                          {program.description}
+                        </p>
+                        
+                        <div className="w-full h-px bg-[#e6dcc8] mb-6"></div>
+
+                        <div className="grid grid-cols-3 gap-2 mb-6">
+                          <div className="flex flex-col border-r border-[#e6dcc8] pr-2">
+                            <span className="text-xs text-[#777] mb-1 font-light">
+                              {program.title === "Rishihood Foundation" ? "Learning" : "Format"}
+                            </span>
+                            <span className="text-[15px] font-semibold text-[#111]">{program.format}</span>
+                          </div>
+                          <div className="flex flex-col border-r border-[#e6dcc8] px-2">
+                            <span className="text-xs text-[#777] mb-1 font-light">Duration</span>
+                            <span className="text-[15px] font-semibold text-[#111]">{program.duration}</span>
+                          </div>
+                          <div className="flex flex-col pl-2">
+                            <span className="text-xs text-[#777] mb-1 font-light">Eligibility</span>
+                            <span className="text-[15px] font-semibold text-[#111] whitespace-nowrap">{program.eligibility}</span>
+                          </div>
+                        </div>
+
+                        {program.title !== "Rishihood Foundation" && (
+                          <button className="w-full bg-[#d00736] hover:bg-[#c91738] text-white py-3.5 rounded-xl font-medium text-[15px] transition-colors shadow-md">
+                            View Program
+                          </button>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
 
-          <div className="w-full lg:w-2/3 bg-[#fcf7ef] rounded-3xl p-6 md:p-10 flex flex-col md:flex-row gap-8 items-stretch overflow-hidden relative min-h-[450px]">
+          <div className="hidden lg:flex w-2/3 bg-[#fcf7ef] rounded-3xl p-10 flex-col md:flex-row gap-8 items-stretch overflow-hidden relative min-h-[450px]">
             
             <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIndex}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full flex flex-col md:flex-row gap-8 items-stretch"
-              >
-                <div className="w-full md:w-5/12 h-[250px] md:h-auto rounded-xl overflow-hidden shadow-sm shrink-0">
-                  <img 
-                    src={programsData[activeIndex].image} 
-                    alt={programsData[activeIndex].title} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="w-full md:w-7/12 flex flex-col justify-center">
-                  <h3 className="text-3xl md:text-3xl font-semibold text-[#d00736] mb-6 mt-10">
-                    {programsData[activeIndex].title}
-                  </h3>
-                  
-                  <div className="w-full h-px bg-gray-200 mb-6"></div>
-                  
-                  <p className="text-[#555] text-base md:text-md mb-8 leading-relaxed font-light">
-                    {programsData[activeIndex].description}
-                  </p>
-                  
-                  <div className="w-full h-px bg-gray-200 mb-6"></div>
-
-                  <div className="grid grid-cols-3 gap-4">
-                    <div className="flex flex-col border-r border-gray-200 pr-4">
-                      <span className="text-sm text-gray-400 mb-1 font-light">
-                        {programsData[activeIndex].title === "Rishihood Foundation" ? "Learning" : "Format"}
-                      </span>
-                      <span className="text-lg font-semibold text-[#111]">{programsData[activeIndex].format}</span>
-                    </div>
-                    <div className="flex flex-col border-r border-gray-200 px-2 lg:px-4">
-                      <span className="text-sm text-gray-400 mb-1 font-light">Duration</span>
-                      <span className="text-lg font-semibold text-[#111]">{programsData[activeIndex].duration}</span>
-                    </div>
-                    <div className="flex flex-col pl-2 lg:pl-4">
-                      <span className="text-sm text-gray-400 mb-1 font-light">Eligibility</span>
-                      <span className="text-lg font-semibold text-[#111]">{programsData[activeIndex].eligibility}</span>
-                    </div>
+              {activeIndex !== -1 && (
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="w-full flex flex-row gap-8 items-stretch"
+                >
+                  <div className="w-5/12 h-[350px] rounded-xl overflow-hidden shadow-sm shrink-0 self-center">
+                    <img 
+                      src={programsData[activeIndex].image} 
+                      alt={programsData[activeIndex].title} 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
-                  {programsData[activeIndex].title !== "Rishihood Foundation" && (
-                    <button className="w-full bg-[#d00736] hover:bg-[#c91738] text-white py-4 rounded-xl font-medium text-lg transition-colors shadow-md mt-auto">
-                      View Program
-                    </button>
-                  )}
-                </div>
-              </motion.div>
+                  <div className="w-7/12 flex flex-col justify-center">
+                    <h3 className="text-3xl font-semibold text-[#d00736] mb-6 mt-10">
+                      {programsData[activeIndex].title}
+                    </h3>
+                    
+                    <div className="w-full h-px bg-[#e6dcc8] mb-6"></div>
+                    
+                    <p className="text-[#555] text-md mb-8 leading-relaxed font-light">
+                      {programsData[activeIndex].description}
+                    </p>
+                    
+                    <div className="w-full h-px bg-[#e6dcc8] mb-6"></div>
+
+                    <div className="grid grid-cols-3 gap-4 mb-8">
+                      <div className="flex flex-col border-r border-[#e6dcc8] pr-4">
+                        <span className="text-sm text-[#777] mb-1 font-light">
+                          {programsData[activeIndex].title === "Rishihood Foundation" ? "Learning" : "Format"}
+                        </span>
+                        <span className="text-lg font-semibold text-[#111]">{programsData[activeIndex].format}</span>
+                      </div>
+                      <div className="flex flex-col border-r border-[#e6dcc8] px-4">
+                        <span className="text-sm text-[#777] mb-1 font-light">Duration</span>
+                        <span className="text-lg font-semibold text-[#111]">{programsData[activeIndex].duration}</span>
+                      </div>
+                      <div className="flex flex-col pl-4">
+                        <span className="text-sm text-[#777] mb-1 font-light">Eligibility</span>
+                        <span className="text-lg font-semibold text-[#111]">{programsData[activeIndex].eligibility}</span>
+                      </div>
+                    </div>
+
+                    {programsData[activeIndex].title !== "Rishihood Foundation" && (
+                      <button className="w-full bg-[#d00736] hover:bg-[#c91738] text-white py-4 rounded-xl font-medium text-lg transition-colors shadow-md mt-auto">
+                        View Program
+                      </button>
+                    )}
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
 
           </div>

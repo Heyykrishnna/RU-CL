@@ -118,28 +118,55 @@ export default function Hero() {
             className="w-full relative"
           >
             {slides[currentSlide].type === 'admissions' && (
-              <div className="mt-4 lg:mt-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 lg:gap-y-10 gap-x-12 py-6 lg:py-8 border-y border-white/20 my-6 lg:my-8 max-w-4xl">
-                  {[
-                    { title: "B.Tech", sub: "in CS & AI" },
-                    { title: "B.Tech", sub: "in CS & Data Science" },
-                    { title: "BBA Entrepreneurship", sub: "Makers Undergrad" },
-                    { title: "B.Sc (Hons)", sub: "in Psychology" },
-                    { title: "B.Des", sub: "in Design" },
-                    { title: "Ph.D", sub: "Multiple programs" },
-                  ].map((prog, i) => (
-                    <div key={i} className="flex flex-col w-full"> 
-                      <span className="text-white text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-2 lg:mb-3">{prog.title}</span>
-                      <span className="text-white/70 text-sm md:text-base font-light">{prog.sub}</span>
+              <div className="mt-4 lg:mt-6 w-full max-w-4xl">
+                <div className="flex flex-col w-full border-t border-white/20 mt-4 md:mt-8 mb-6 md:mb-8">
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-12 py-4 md:py-6 border-b border-white/20">
+                    <div className="flex flex-col w-full"> 
+                      <span className="text-white text-xl md:text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-1 md:mb-3">B.Tech</span>
+                      <span className="text-white/70 text-sm md:text-base font-light">in CS & AI</span>
                     </div>
-                  ))}
+                    <div className="flex flex-col w-full"> 
+                      <span className="text-white text-xl md:text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-1 md:mb-3">B.Tech</span>
+                      <span className="text-white/70 text-sm md:text-base font-light leading-tight">in CS & Data Science</span>
+                    </div>
+                    <div className="hidden md:flex flex-col w-full"> 
+                      <span className="text-white text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-3">BBA Entrepreneurship</span>
+                      <span className="text-white/70 text-base font-light">Makers Undergrad</span>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-12 py-4 md:py-6 md:border-b md:border-white/20">
+                    <div className="flex flex-col w-full"> 
+                      <span className="text-white text-xl md:text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-1 md:mb-3">B.Sc (Hons)</span>
+                      <span className="text-white/70 text-sm md:text-base font-light">in Psychology</span>
+                    </div>
+                    <div className="flex flex-col w-full"> 
+                      <span className="text-white text-xl md:text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-1 md:mb-3">B.Des</span>
+                      <span className="text-white/70 text-sm md:text-base font-light">in Design</span>
+                    </div>
+                    <div className="hidden md:flex flex-col w-full"> 
+                      <span className="text-white text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-3">Ph.D</span>
+                      <span className="text-white/70 text-base font-light">Multiple programs</span>
+                    </div>
+                  </div>
+
+                  <div className="flex md:hidden flex-col gap-y-4 py-4 pt-0">
+                    <div className="flex flex-col w-full"> 
+                      <span className="text-white text-xl leading-none font-semibold font-primary mb-1">BBA Entrepreneurship</span>
+                      <span className="text-white/70 text-sm font-light">Makers Undergrad</span>
+                    </div>
+                    <div className="flex flex-col w-full mt-2"> 
+                      <span className="text-white text-xl leading-none font-semibold font-primary mb-1">Ph.D</span>
+                      <span className="text-white/70 text-sm font-light">Multiple programs</span>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="flex flex-wrap items-center gap-4 mt-6 lg:mt-8 pointer-events-auto">
-                  <button className="bg-[#d00736] hover:bg-[#a8002a] transition-colors duration-300 text-white px-10 py-3 rounded-md font-light text-base shadow-lg cursor-pointer">
+                <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-6 lg:mt-8 pointer-events-auto w-full max-w-md md:max-w-none">
+                  <button className="w-full sm:w-auto bg-[#d00736] hover:bg-[#a8002a] transition-colors duration-300 text-white px-10 py-3 sm:py-3.5 rounded-lg md:rounded-md font-light text-[15px] sm:text-base shadow-lg cursor-pointer">
                     Apply now
                   </button>
-                  <button className="bg-transparent border border-white hover:bg-white/10 transition-colors duration-300 text-white px-10 py-3 rounded-md font-light text-base shadow-lg cursor-pointer">
+                  <button className="w-full sm:w-auto bg-transparent border border-white hover:bg-white/10 transition-colors duration-300 text-white px-10 py-3 sm:py-3.5 rounded-lg md:rounded-md font-light text-[15px] sm:text-base shadow-lg cursor-pointer">
                     Download Brochure
                   </button>
                 </div>
@@ -257,7 +284,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="relative z-20 w-full bg-white grid grid-cols-1 md:grid-cols-4 border-t border-gray-200">
+      <div className="relative z-20 w-full bg-[#faf9f6] md:bg-white grid grid-cols-2 md:grid-cols-4 gap-3 p-4 pb-8 md:gap-0 md:p-0 md:border-t md:border-gray-200">
         {[
           { text: "UG Admission", icon: Book },
           { text: "Ph.D Admissions", icon: GraduationCap },
@@ -266,20 +293,30 @@ export default function Hero() {
         ].map((item, idx) => (
           <div 
             key={idx}
-            className={`flex items-center justify-between cursor-pointer bg-white hover:bg-white transition-colors duration-300 group px-6 lg:px-10 py-5 md:py-6 lg:py-8 relative ${
-              idx !== 0 ? 'md:border-l border-gray-200' : ''
-            }`}
+            className={`flex items-center justify-between cursor-pointer bg-white group relative 
+              border border-gray-300 md:border-none rounded-lg md:rounded-none shadow-sm md:shadow-none
+              px-3 py-4 sm:px-4 md:px-6 lg:px-10 md:py-6 lg:py-8
+              ${idx !== 0 ? 'md:border-l md:border-gray-200' : ''}
+              hover:bg-white transition-colors duration-300
+            `}
           >
-            <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#d00736] transform scale-x-0 group-hover:scale-x-100 origin-bottom transition-transform duration-500 ease-out" />
+            <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#d00736] transform scale-x-0 group-hover:scale-x-100 origin-bottom transition-transform duration-500 ease-out rounded-b-lg md:rounded-b-none" />
             
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               <item.icon className="w-6 h-6 text-[#1a1a1a] shrink-0" strokeWidth={1.5} />
-              <span className="font-light text-[#4b4b4b] text-[15px] lg:text-base group-hover:text-[#d00736] transition-colors duration-300">
-                {item.text}
-              </span>
+              <div className="flex flex-col md:flex-row md:items-center">
+                <span className="font-light text-[#4b4b4b] text-[15px] lg:text-base leading-tight md:leading-normal group-hover:text-[#d00736] transition-colors duration-300">
+                  {item.text.split(' ').map((word, i, arr) => (
+                    <span key={i} className="md:inline">
+                      {word}{i !== arr.length - 1 && <span className="hidden md:inline"> </span>}
+                      {i !== arr.length - 1 && <br className="md:hidden" />}
+                    </span>
+                  ))}
+                </span>
+              </div>
             </div>
 
-            <ArrowRight className="w-5 h-5 text-[#1a1a1a] group-hover:text-[#d00736] -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out" strokeWidth={1.5} />
+            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-[#d00736] md:text-[#1a1a1a] group-hover:text-[#d00736] -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out shrink-0" strokeWidth={1.5} />
           </div>
         ))}
       </div>

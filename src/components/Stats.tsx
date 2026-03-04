@@ -126,11 +126,11 @@ export default function Stats() {
             direction="right"
             className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]"
           >
-            <LeafSVG className="absolute right-20 top-1/2 -translate-y-1/2 w-[250px] md:w-[100px] h-auto opacity-80 translate-x-[20%] pointer-events-none" />
+            <LeafSVG className="absolute left-0 lg:right-20 bottom-0 lg:top-1/2 w-[160px] md:w-[250px] lg:w-[100px] h-auto opacity-80 lg:-translate-y-1/2 lg:translate-x-[20%] pointer-events-none translate-y-[20%] lg:!translate-y-[-50%]" />
             
-            <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8 h-full">
-              <div className="flex-1 flex flex-col justify-center">
-                <div className="flex items-center mb-2">
+            <div className="relative z-10 flex flex-col lg:flex-row justify-between h-full gap-4 lg:gap-8">
+              <div className="flex-1 flex flex-col justify-start lg:justify-center">
+                <div className="flex items-center mb-1 lg:mb-2">
                   <BlurText
                     text="50"
                     delay={50}
@@ -140,19 +140,15 @@ export default function Stats() {
                   />
                   <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1">+</span>
                 </div>
-                <p className="text-[#555] text-base md:text-lg font-light mt-2 max-w-[200px]">
+                <p className="text-[#555] text-base md:text-lg font-light lg:mt-2 max-w-[200px]">
                   Institutional Mentors from
                 </p>
               </div>
 
-              <div className="flex flex-col gap-6 relative z-10 lg:pr-8 right-30">
-                <div className="flex items-center gap-3">
-                  <img src="https://framerusercontent.com/images/mQQEZND7w1Dh4xGlRjVWzfyLbE.png?width=260&height=84" alt="Newton School" className="h-8 object-contain" onError={(e) => e.currentTarget.style.display='none'} />
-                </div>
+              <div className="flex flex-row lg:flex-col items-center lg:items-start gap-4 lg:gap-6 relative z-10 lg:pr-8 lg:right-30 self-end lg:self-auto mt-auto lg:mt-0">
+                <img src="https://framerusercontent.com/images/mQQEZND7w1Dh4xGlRjVWzfyLbE.png?width=260&height=84" alt="Newton School" className="h-6 md:h-8 object-contain" onError={(e) => e.currentTarget.style.display='none'} />
                 
-                <div>
-                  <img src="https://framerusercontent.com/images/rNRJqRLJhC6Nrl6BIVnjQWzwDcg.png?width=220&height=92" alt="KPMG" className="h-6 md:h-8 object-contain" />
-                </div>
+                <img src="https://framerusercontent.com/images/rNRJqRLJhC6Nrl6BIVnjQWzwDcg.png?width=220&height=92" alt="KPMG" className="h-4 md:h-6 object-contain" />
               </div>
             </div>
           </ScrubCard>
