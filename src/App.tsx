@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+
 import './App.css';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -5,6 +9,17 @@ import Stats from './components/Stats';
 import Programs from './components/Programs';
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
   return (
     <div className="min-h-screen font-primary bg-[#fcfaf5]">
       <Navbar />

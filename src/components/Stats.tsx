@@ -52,9 +52,9 @@ export default function Stats() {
               delay={30}
               animateBy="letters"
               direction="bottom"
-              className="text-xl md:text-3xl font-bold text-[#d00736] mb-6"
+              className="text-xl md:text-3xl font-semibold text-[#d00736] mb-6"
             />
-            <h3 className="text-md md:text-lg font-bold text-[#333] mb-4 leading-snug">
+            <h3 className="text-md md:text-lg font-semibold text-[#333] mb-4 leading-snug">
               Reimagining higher education as a force for national transformation.
             </h3>
             <p className="text-[#555] text-base md:text-lg mb-8 leading-relaxed font-light">
@@ -113,9 +113,9 @@ export default function Stats() {
                 delay={50}
                 animateBy="letters"
                 direction="bottom"
-                className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#111] leading-none tracking-tight"
+                className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#111] leading-none tracking-tight"
               />
-              <span className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#d00736] leading-none tracking-tight ml-1">+</span>
+              <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1">+</span>
             </div>
             <p className="text-[#555] text-base md:text-lg font-light max-w-xs relative z-10 mt-2">
               Learners & Alumni thriving impact-first network
@@ -136,9 +136,9 @@ export default function Stats() {
                     delay={50}
                     animateBy="letters"
                     direction="bottom"
-                    className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#111] leading-none tracking-tight"
+                    className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#111] leading-none tracking-tight"
                   />
-                  <span className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#d00736] leading-none tracking-tight ml-1">+</span>
+                  <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1">+</span>
                 </div>
                 <p className="text-[#555] text-base md:text-lg font-light mt-2 max-w-[200px]">
                   Institutional Mentors from

@@ -9,11 +9,14 @@ const NavItem = ({ label, hasDropdown, dropdownItems }: { label: string; hasDrop
     </div>
     
     {hasDropdown && dropdownItems && (
-      <div className="absolute top-[70px] left-0 opacity-0 invisible translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-in-out w-[320px] bg-[#FAEBD7] shadow-lg rounded-xl py-3 z-100">
-        <ul className="flex flex-col">
+      <div className="absolute top-[70px] left-0 opacity-0 invisible translate-y-3 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 ease-in-out w-[320px] bg-[#fdf6e6] shadow-xl rounded-xl p-2 z-100 border border-[#f0e4cf]">
+        <ul className="flex flex-col gap-1">
           {dropdownItems.map((item, index) => (
             <li key={index}>
-              <a href="#" className="block px-6 py-3 text-[15px] font-normal text-[#4b4b4b] hover:text-[#d00736] transition-colors whitespace-normal">
+              <a 
+                href="#" 
+                className="block px-4 py-2 text-sm font-normal cursor-pointer text-[#4b4b4b] hover:text-[#d00736] hover:bg-[#f6e1da] rounded-lg transition-colors whitespace-normal"
+              >
                 {item}
               </a>
             </li>

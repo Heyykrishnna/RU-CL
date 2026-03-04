@@ -129,7 +129,7 @@ export default function Hero() {
                     { title: "Ph.D", sub: "Multiple programs" },
                   ].map((prog, i) => (
                     <div key={i} className="flex flex-col w-full"> 
-                      <span className="text-white text-2xl lg:text-[28px] leading-none font-bold font-primary mb-2 lg:mb-3">{prog.title}</span>
+                      <span className="text-white text-2xl lg:text-[28px] leading-none font-semibold font-primary mb-2 lg:mb-3">{prog.title}</span>
                       <span className="text-white/70 text-sm md:text-base font-light">{prog.sub}</span>
                     </div>
                   ))}
@@ -187,7 +187,7 @@ export default function Hero() {
               <div className="mt-6 lg:mt-8 w-full flex justify-between relative h-full">
                 <div className="flex-1 w-full lg:w-1/2 relative z-10">
                   <div className="flex flex-col mb-6">
-                    <span className="text-white font-bold text-2xl md:text-[28px] lg:text-[32px] tracking-wide uppercase mb-3">
+                    <span className="text-white font-semibold text-2xl md:text-[28px] lg:text-[32px] tracking-wide uppercase mb-3">
                         MAKERS UNDERGRAD
                     </span>
                     <div className="h-[2px] w-[350px] bg-white mb-8"></div>
@@ -196,10 +196,10 @@ export default function Hero() {
                   <div className="inline-block border border-white/20 bg-black/40 backdrop-blur-sm rounded-lg mb-8 lg:mb-10 w-full max-w-[420px]">
                     <div className="flex w-full">
                       <div className="flex-1 text-center py-5 border-r border-b border-white/20">
-                        <div className="text-white font-bold text-sm md:text-base leading-tight">Venture<br/>Funding</div>
+                        <div className="text-white font-semibold text-sm md:text-base leading-tight">Venture<br/>Funding</div>
                       </div>
                       <div className="flex-1 text-center py-5 border-b border-white/20">
-                        <div className="text-white font-bold text-sm md:text-base leading-tight">Placement<br/>Support</div>
+                        <div className="text-white font-semibold text-sm md:text-base leading-tight">Placement<br/>Support</div>
                       </div>
                     </div>
                     <div className="flex w-full">
