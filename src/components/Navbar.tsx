@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react';
 
 const NavItem = ({ label, hasDropdown, dropdownItems }: { label: string; hasDropdown?: boolean; dropdownItems?: string[] }) => (
   <div className="relative group h-full flex items-center">
-    <div className="flex items-center gap-1 cursor-pointer hover:text-[#E81C43] transition-colors text-sm py-6">
+    <div className="flex items-center gap-1 cursor-pointer hover:text-[#d00736] transition-colors text-sm py-6">
       {label}
       {hasDropdown && <ChevronDown className="w-4 h-4 ml-0.5" />}
     </div>
@@ -13,7 +13,7 @@ const NavItem = ({ label, hasDropdown, dropdownItems }: { label: string; hasDrop
         <ul className="flex flex-col">
           {dropdownItems.map((item, index) => (
             <li key={index}>
-              <a href="#" className="block px-6 py-3 text-[15px] font-normal text-[#4b4b4b] hover:text-[#E81C43] transition-colors whitespace-normal">
+              <a href="#" className="block px-6 py-3 text-[15px] font-normal text-[#4b4b4b] hover:text-[#d00736] transition-colors whitespace-normal">
                 {item}
               </a>
             </li>
@@ -74,8 +74,8 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center">
-        <button className="flex items-center gap-2 px-6 py-2 border-2 border-[#E81C43] text-[#E81C43] font-semibold text-sm rounded-md hover:bg-[#E81C43] group animate-in-out duration-500 cursor-pointer hover:text-white transition-colors">
-          <span className="w-1.5 h-1.5 bg-[#E81C43] hover:bg-white rounded-full animate-pulse group-hover:bg-white"></span>
+        <button className="flex items-center gap-2 px-6 py-2 border-2 border-[#d00736] text-[#d00736] font-semibold text-sm rounded-md hover:bg-[#d00736] group animate-in-out duration-500 cursor-pointer hover:text-white transition-colors">
+          <span className="w-1.5 h-1.5 bg-[#d00736] hover:bg-white rounded-full animate-pulse group-hover:bg-white"></span>
           Apply Now
         </button>
       </div>

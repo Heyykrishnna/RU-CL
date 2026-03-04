@@ -1,17 +1,34 @@
-import { motion } from 'framer-motion';
+import type { ReactNode } from 'react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import BlurText from './BlurText';
 
-export default function Stats() {
-  const containerVariantsLeft = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
-  };
+function ScrubCard({ children, direction, className }: { children: ReactNode; direction: 'left' | 'right'; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1 0"]
+  });
+    const x = useTransform(
+    scrollYProgress, 
+    [0, 0.2, 0.8, 1], 
+    [direction === 'left' ? -150 : 150, 0, 0, direction === 'left' ? -150 : 150]
+  );
   
-  const containerVariantsRight = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
-  };
+  const opacity = useTransform(
+    scrollYProgress, 
+    [0, 0.2, 0.8, 1], 
+    [0, 1, 1, 0]
+  );
+  
+  return (
+    <motion.div ref={ref} style={{ x, opacity }} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
+export default function Stats() {
   const LeafSVG = ({ className }: {className?: string}) => (
     <svg className={className} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 96 156">
       <g transform="translate(-0.285 0)">
@@ -22,15 +39,12 @@ export default function Stats() {
   );
 
   return (
-    <section className="w-full bg-[#fcfaf5] py-24 px-4 md:px-12 lg:px-24 font-primary overflow-hidden">
+    <section className="w-full bg-[#fcfaf5] py-14 px-4 md:px-12 lg:px-24 font-primary overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-6 md:gap-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-          <motion.div 
-            variants={containerVariantsLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+          <ScrubCard 
+            direction="left"
             className="lg:col-span-6 xl:col-span-5 bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col justify-center items-start"
           >
             <BlurText
@@ -38,7 +52,7 @@ export default function Stats() {
               delay={30}
               animateBy="letters"
               direction="bottom"
-              className="text-xl md:text-3xl font-bold text-[#E81C43] mb-6"
+              className="text-xl md:text-3xl font-bold text-[#d00736] mb-6"
             />
             <h3 className="text-md md:text-lg font-bold text-[#333] mb-4 leading-snug">
               Reimagining higher education as a force for national transformation.
@@ -46,15 +60,12 @@ export default function Stats() {
             <p className="text-[#555] text-base md:text-lg mb-8 leading-relaxed font-light">
               We shape learners for personal growth, professional excellence, and public impact in an industry-integrated, values-first learning environment.
             </p>
-            <button className="bg-[#E81C43] hover:bg-[#c91738] text-white px-8 py-3.5 rounded-md font-medium transition-colors shadow-md">
+            <button className="bg-[#d00736] hover:bg-[#c91738] text-white px-8 py-3.5 rounded-md font-medium transition-colors shadow-md">
               Download Brochure
             </button>
-          </motion.div>
-          <motion.div 
-            variants={containerVariantsRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+          </ScrubCard>
+          <ScrubCard 
+            direction="right"
             className="lg:col-span-6 xl:col-span-7 rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-gray-100 h-[300px] sm:h-[400px] lg:h-auto"
           >
             <img 
@@ -62,13 +73,10 @@ export default function Stats() {
               alt="Speaker" 
               className="w-full h-full object-cover"
             />
-          </motion.div>
+          </ScrubCard>
         </div>
-        <motion.div 
-          variants={containerVariantsLeft}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+        <ScrubCard 
+          direction="left"
           className="bg-white rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden flex flex-col md:flex-row items-center pt-10 md:pt-0"
         >
           <LeafSVG className="absolute right-0 bottom-0 w-[75px] md:w-[150px] h-auto opacity-30 translate-x-[20%] translate-y-[20%] pointer-events-none" />
@@ -90,14 +98,11 @@ export default function Stats() {
               — Swami Vivekananda
             </p>
           </div>
-        </motion.div>
+        </ScrubCard>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          <motion.div 
-            variants={containerVariantsLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+          <ScrubCard 
+            direction="left"
             className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]"
           >
             <LeafSVG className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] md:w-[400px] h-auto opacity-30 translate-x-[20%] pointer-events-none" />
@@ -110,18 +115,15 @@ export default function Stats() {
                 direction="bottom"
                 className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#111] leading-none tracking-tight"
               />
-              <span className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#E81C43] leading-none tracking-tight ml-1">+</span>
+              <span className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#d00736] leading-none tracking-tight ml-1">+</span>
             </div>
             <p className="text-[#555] text-base md:text-lg font-light max-w-xs relative z-10 mt-2">
               Learners & Alumni thriving impact-first network
             </p>
-          </motion.div>
+          </ScrubCard>
 
-          <motion.div 
-            variants={containerVariantsRight}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+          <ScrubCard 
+            direction="right"
             className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]"
           >
             <LeafSVG className="absolute right-20 top-1/2 -translate-y-1/2 w-[250px] md:w-[100px] h-auto opacity-80 translate-x-[20%] pointer-events-none" />
@@ -136,7 +138,7 @@ export default function Stats() {
                     direction="bottom"
                     className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#111] leading-none tracking-tight"
                   />
-                  <span className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#E81C43] leading-none tracking-tight ml-1">+</span>
+                  <span className="text-5xl md:text-6xl lg:text-[80px] font-bold text-[#d00736] leading-none tracking-tight ml-1">+</span>
                 </div>
                 <p className="text-[#555] text-base md:text-lg font-light mt-2 max-w-[200px]">
                   Institutional Mentors from
@@ -153,7 +155,7 @@ export default function Stats() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </ScrubCard>
         </div>
 
       </div>

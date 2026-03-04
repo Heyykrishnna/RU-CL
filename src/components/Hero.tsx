@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Book, GraduationCap, Users, Home, ArrowRight } from 'lucide-react';
+import { Book, GraduationCap, Users, Home, ArrowRight, Calendar, Building2 } from 'lucide-react';
 import BlurText from './BlurText';
 
 const swipeConfidenceThreshold = 10000;
@@ -8,10 +8,26 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
+type SlideData = {
+  type: 'admissions' | 'foundational' | 'partnerships' | 'startup';
+  image: string;
+  italicHeading: string;
+  boldHeading: string;
+  subHeading?: string;
+  hindiText?: string;
+  buttonText?: string;
+};
 
-const slides = [
+const slides: SlideData[] = [
   {
+    type: 'admissions',
     image: "https://framerusercontent.com/images/pxMvi4f6x3gSEzNzc2TDX0aFGMQ.jpeg?scale-down-to=4096&width=5184&height=2772",
+    italicHeading: "Begin your Rishihood Journey",
+    boldHeading: "2026 Admissions Now Open",
+  },
+  {
+    type: 'foundational',
+    image: "https://framerusercontent.com/images/7MyhsrkNz01pfukKf1ZVSf04z1M.jpg?scale-down-to=4096&width=6000&height=4000",
     italicHeading: "Foundational Learning",
     boldHeading: "Future-Ready Thinking",
     subHeading: "Shaping Learners through",
@@ -19,28 +35,19 @@ const slides = [
     buttonText: "Learn more",
   },
   {
-    image: "https://framerusercontent.com/images/7MyhsrkNz01pfukKf1ZVSf04z1M.jpg?scale-down-to=4096&width=6000&height=4000",
-    italicHeading: "Empowering Minds",
-    boldHeading: "Global Perspectives",
-    subHeading: "Building leaders through",
-    hindiText: "ज्ञान | कर्म | भक्ति",
-    buttonText: "Discover Programs",
-  },
-  {
+    type: 'partnerships',
     image: "https://framerusercontent.com/images/6wFKuxRFyZggeoS2RW96bByolM.jpg?scale-down-to=4096&width=6000&height=4000",
-    italicHeading: "Academic Excellence",
-    boldHeading: "Research & Innovation",
-    subHeading: "Fostering curiosity through",
-    hindiText: "सत्य | धर्म | शांति",
-    buttonText: "Explore Campus",
+    italicHeading: "Industry-Driven Learning",
+    boldHeading: "Real-World Impact",
+    subHeading: "Delivered in Partnership with:",
+    buttonText: "Learn more",
   },
   {
-    image: "https://framerusercontent.com/images/pxMvi4f6x3gSEzNzc2TDX0aFGMQ.jpeg?scale-down-to=4096&width=5184&height=2772",
-    italicHeading: "Real-World Impact",
-    boldHeading: "Industry Connections",
-    subHeading: "Creating the future with",
-    hindiText: "प्रेम | करुणा | क्षमा",
-    buttonText: "Join Us",
+    type: 'startup',
+    image: "https://framerusercontent.com/images/EhpbFPhmT6FGFDOknfMwtoP0Y.png?width=1200&height=736", 
+    italicHeading: "Graduate with a",
+    boldHeading: "Startup",
+    buttonText: "Apply now"
   }
 ];
 
@@ -48,11 +55,11 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
 
   return (
     <div className="relative w-full h-[calc(100vh-80px)] overflow-hidden bg-black font-primary flex flex-col">
@@ -85,14 +92,14 @@ export default function Hero() {
           }
         }}
       >
-        <div className="max-w-4xl pt-10 pointer-events-none">
+        <div className="max-w-5xl pt-10 pointer-events-none w-full">
           <BlurText
             key={`blur-${currentSlide}`}
             text={slides[currentSlide].italicHeading}
             delay={50}
             animateBy="letters"
             direction="bottom"
-            className="font-secondary italic text-white text-lg md:text-2xl mb-4 tracking-wide font-medium"
+            className="font-secondary italic text-white text-lg md:text-xl tracking-wide font-medium"
           />
           <BlurText 
             key={`bold-${currentSlide}`}
@@ -100,43 +107,150 @@ export default function Hero() {
             delay={50}
             animateBy="letters"
             direction="bottom"
-            className="font-primary font-bold text-5xl md:text-5xl lg:text-5xl leading-tight text-[#E8A559] mb-4"
+            className="font-primary font-semibold text-xl md:text-3xl lg:text-5xl leading-tight text-[#E8A559] mt-2 mb-2 lg:mb-4 whitespace-nowrap"
           />
 
           <motion.div
-            key={`sub-${currentSlide}`}
+            key={`content-${currentSlide}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
+            className="w-full relative"
           >
-            <div className="flex items-center gap-4 mb-4">
-              <p className="text-[#f5f5f5] font-semibold text-lg md:text-xl">
-                {slides[currentSlide].subHeading}
-              </p>
-              <div className="h-[2px] w-48 bg-white/40"></div>
-            </div>
-            
-            <div className="inline-block border border-gray-400/50 bg-black/40 backdrop-blur-sm rounded-lg px-6 py-3 mb-12">
-              <span className="text-white font-medium text-xl md:text-2xl tracking-widest">
-                {slides[currentSlide].hindiText}
-              </span>
-            </div>
-            
-            <br />
-            
-            <button className="bg-[#E81C43] hover:bg-white hover:text-black animate-in-out duration-500 text-white px-12 cursor-pointer py-2 rounded-md font-light text-md transition-colors shadow-lg pointer-events-auto">
-              {slides[currentSlide].buttonText}
-            </button>
+            {slides[currentSlide].type === 'admissions' && (
+              <div className="mt-4 lg:mt-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-6 lg:gap-y-10 gap-x-12 py-6 lg:py-8 border-y border-white/20 my-6 lg:my-8 max-w-4xl">
+                  {[
+                    { title: "B.Tech", sub: "in CS & AI" },
+                    { title: "B.Tech", sub: "in CS & Data Science" },
+                    { title: "BBA Entrepreneurship", sub: "Makers Undergrad" },
+                    { title: "B.Sc (Hons)", sub: "in Psychology" },
+                    { title: "B.Des", sub: "in Design" },
+                    { title: "Ph.D", sub: "Multiple programs" },
+                  ].map((prog, i) => (
+                    <div key={i} className="flex flex-col w-full"> 
+                      <span className="text-white text-2xl lg:text-[28px] leading-none font-bold font-primary mb-2 lg:mb-3">{prog.title}</span>
+                      <span className="text-white/70 text-sm md:text-base font-light">{prog.sub}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="flex flex-wrap items-center gap-4 mt-6 lg:mt-8 pointer-events-auto">
+                  <button className="bg-[#d00736] hover:bg-[#a8002a] transition-colors duration-300 text-white px-10 py-3 rounded-md font-light text-base shadow-lg cursor-pointer">
+                    Apply now
+                  </button>
+                  <button className="bg-transparent border border-white hover:bg-white/10 transition-colors duration-300 text-white px-10 py-3 rounded-md font-light text-base shadow-lg cursor-pointer">
+                    Download Brochure
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {slides[currentSlide].type === 'foundational' && (
+              <div className="mt-6 lg:mt-8">
+                <div className="flex flex-col mb-8">
+                  <span className="text-white font-semibold text-md md:text-lg tracking-wide mb-3">
+                    {slides[currentSlide].subHeading}
+                  </span>
+                  <div className="h-0.5 w-[280px] bg-white mb-8"></div>
+                  <div className="inline-block border border-gray-400/50 bg-black/40 backdrop-blur-sm rounded-lg px-6 lg:px-8 py-3 lg:py-4 self-start">
+                    <span className="text-white font-medium text-xl md:text-2xl tracking-widest">
+                      {slides[currentSlide].hindiText}
+                    </span>
+                  </div>
+                </div>
+                <button className="bg-[#d00736] hover:bg-[#a8002a] transition-colors duration-300 text-white px-12 py-3 rounded-md font-light text-base shadow-lg pointer-events-auto cursor-pointer mt-4">
+                  {slides[currentSlide].buttonText}
+                </button>
+              </div>
+            )}
+
+            {slides[currentSlide].type === 'partnerships' && (
+              <div className="mt-6 lg:mt-8">
+                <div className="flex flex-col mb-10">
+                  <span className="text-white font-semibold text-lg md:text-xl tracking-wide mb-3">
+                    {slides[currentSlide].subHeading}
+                  </span>
+                  <div className="h-0.5 w-[300px] bg-white mb-8"></div>
+                  <div className="flex items-center gap-12 h-12">
+                    <img src="https://framerusercontent.com/images/mQQEZND7w1Dh4xGlRjVWzfyLbE.png?width=260&height=84" alt="Newton School" className="h-8 lg:h-10 object-contain brightness-0 invert" />
+                    <img src="https://framerusercontent.com/images/rNRJqRLJhC6Nrl6BIVnjQWzwDcg.png?width=220&height=92" alt="KPMG" className="h-6 lg:h-8 object-contain brightness-0 invert" />
+                  </div>
+                </div>
+                <button className="bg-[#d00736] hover:bg-[#a8002a] transition-colors duration-300 text-white px-12 py-3 rounded-md font-light text-base shadow-lg pointer-events-auto cursor-pointer mt-4 lg:mt-8">
+                  {slides[currentSlide].buttonText}
+                </button>
+              </div>
+            )}
+
+            {slides[currentSlide].type === 'startup' && (
+              <div className="mt-6 lg:mt-8 w-full flex justify-between relative h-full">
+                <div className="flex-1 w-full lg:w-1/2 relative z-10">
+                  <div className="flex flex-col mb-6">
+                    <span className="text-white font-bold text-2xl md:text-[28px] lg:text-[32px] tracking-wide uppercase mb-3">
+                        MAKERS UNDERGRAD
+                    </span>
+                    <div className="h-[2px] w-[350px] bg-white mb-8"></div>
+                  </div>
+                  
+                  <div className="inline-block border border-white/20 bg-black/40 backdrop-blur-sm rounded-lg mb-8 lg:mb-10 w-full max-w-[420px]">
+                    <div className="flex w-full">
+                      <div className="flex-1 text-center py-5 border-r border-b border-white/20">
+                        <div className="text-white font-bold text-sm md:text-base leading-tight">Venture<br/>Funding</div>
+                      </div>
+                      <div className="flex-1 text-center py-5 border-b border-white/20">
+                        <div className="text-white font-bold text-sm md:text-base leading-tight">Placement<br/>Support</div>
+                      </div>
+                    </div>
+                    <div className="flex w-full">
+                      <div className="flex-1 flex items-center justify-center gap-3 py-5 border-r border-white/20">
+                        <Calendar className="w-5 h-5 text-white/90" />
+                        <span className="text-white font-semibold text-sm md:text-base">4 years</span>
+                      </div>
+                      <div className="flex-1 flex items-center justify-center gap-3 py-5">
+                        <Building2 className="w-5 h-5 text-white/90" />
+                        <span className="text-white font-semibold text-sm md:text-base">Residential</span>
+                      </div>
+                    </div>
+                  </div>
+                  <br />
+                  <button className="bg-[#d00736] hover:bg-[#a8002a] transition-colors duration-300 text-white px-12 py-3 rounded-md font-light text-base shadow-lg pointer-events-auto cursor-pointer">
+                    {slides[currentSlide].buttonText}
+                  </button>
+                </div>
+
+                <div className="hidden lg:flex flex-col items-center absolute -top-[120px] right-2 xl:right-10 z-20 pointer-events-none">
+                  <div className="bg-[#a8002a] border border-white p-6 md:p-8 rounded-xl w-[320px] xl:w-[420px] shadow-2xl relative z-10 translate-y-16 translate-x-12">
+                    <p className="font-primary text-white text-[15px] xl:text-[17px] mb-6 leading-snug font-medium">
+                      "Rishihood didn't just teach me business—it helped me build one. With guidance, funding, and belief, I turned an idea into impact."
+                    </p>
+                    <div className="flex flex-col">
+                      <span className="font-primary text-white font-semibold text-sm md:text-base mb-1">— Parth Vardhan Saxena</span>
+                      <span className="font-primary text-white/90 text-xs md:text-sm font-light mt-1 leading-tight">
+                        BBA Entrepreneurship<br/>
+                        - Founder, Tru Pahadi
+                      </span>
+                    </div>
+                  </div>
+                  <img 
+                    src="https://framerusercontent.com/images/F1NCuOeDMHPq5AhdfPL87b4Wf74.png?scale-down-to=1024&width=1556&height=2168" 
+                    alt="Student" 
+                    className="w-[280px] xl:w-[350px] left-60 h-[340px] xl:h-[450px] object-cover object-top relative z-100"
+                    style={{ WebkitMaskImage: "linear-gradient(to top, transparent 5%, black 40%)" }}
+                  />
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </motion.div>
 
-      <div className="absolute bottom-28 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
+      <div className="absolute bottom-24 lg:bottom-28 left-1/2 -translate-x-1/2 z-20 flex gap-2.5">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
+            className={`h-2.5 rounded-full transition-all duration-300 pointer-events-auto cursor-pointer ${
               currentSlide === index ? 'bg-white w-6' : 'bg-white/40 hover:bg-white/70 w-2.5'
             }`}
           />
@@ -156,16 +270,16 @@ export default function Hero() {
               idx !== 0 ? 'md:border-l border-gray-200' : ''
             }`}
           >
-            <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#E81C43] transform scale-x-0 group-hover:scale-x-100 origin-bottom transition-transform duration-500 ease-out" />
+            <div className="absolute bottom-0 left-0 w-full h-[3px] bg-[#d00736] transform scale-x-0 group-hover:scale-x-100 origin-bottom transition-transform duration-500 ease-out" />
             
             <div className="flex items-center gap-4">
               <item.icon className="w-6 h-6 text-[#1a1a1a] shrink-0" strokeWidth={1.5} />
-              <span className="font-light text-[#4b4b4b] text-[15px] lg:text-base group-hover:text-[#E81C43] transition-colors duration-300">
+              <span className="font-light text-[#4b4b4b] text-[15px] lg:text-base group-hover:text-[#d00736] transition-colors duration-300">
                 {item.text}
               </span>
             </div>
 
-            <ArrowRight className="w-5 h-5 text-[#1a1a1a] group-hover:text-[#E81C43] -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out" strokeWidth={1.5} />
+            <ArrowRight className="w-5 h-5 text-[#1a1a1a] group-hover:text-[#d00736] -rotate-45 group-hover:rotate-0 transition-transform duration-300 ease-out" strokeWidth={1.5} />
           </div>
         ))}
       </div>
