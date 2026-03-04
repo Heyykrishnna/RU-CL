@@ -87,10 +87,10 @@ export default function Programs() {
                         : "bg-white border border-gray-100 shadow-sm rounded-xl py-5 px-6 hover:border-gray-300 hover:shadow-md"
                   }`}
                 >
-                  <span className={`text-lg md:text-xl ${
+                  <span className={`text-lg md:text-lg ${
                     isActive ? "text-[#111] font-semibold" 
                     : isFoundation ? "text-[#d00736] font-medium"
-                    : "text-[#777] font-medium"
+                    : "text-[#777] font-light"
                   }`}>
                     {program.title}
                   </span>
