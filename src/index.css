@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-primary: "Montserrat", sans-serif;
+  --font-secondary: "Alike Angular", serif;
+  --font-sans: var(--font-primary);
+}
+
+@layer base {
+  body {
+    @apply font-primary antialiased bg-[#fcf7ef] text-[#4b4b4b];
+    margin: 0;
+    min-height: 100vh;
+  }
+}
