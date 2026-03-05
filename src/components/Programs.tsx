@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import BlurText from './BlurText';
 
 const programsData = [
   {
@@ -61,9 +62,13 @@ export default function Programs() {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         <div className="text-center mb-16 max-w-3xl">
-          <h2 className="text-xl md:text-[32px] font-semibold text-[#d00736] mb-4">
-            Undergraduate Programs
-          </h2>
+          <BlurText
+            text="Undergraduate Programs"
+            delay={100}
+            animateBy="letters"
+            direction="bottom"
+            className="text-xl md:text-[32px] font-semibold justify-center text-[#d00736] mb-4"
+          />
           <p className="text-[#555] text-sm md:text-sm font-medium">
             Practical learning and personal growth to build skills, mindset, and future-ready leadership.
           </p>

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import BlurText from './BlurText';
 
 function ScrubCard({ children, direction, className }: { children: ReactNode; direction: 'left' | 'right'; className?: string }) {
@@ -9,15 +9,22 @@ function ScrubCard({ children, direction, className }: { children: ReactNode; di
     target: ref,
     offset: ["0 1", "1 0"]
   });
-    const x = useTransform(
-    scrollYProgress, 
-    [0, 0.2, 0.8, 1], 
-    [direction === 'left' ? -150 : 150, 0, 0, direction === 'left' ? -150 : 150]
+
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const x = useTransform(
+    smoothProgress, 
+    [0, 0.25, 0.75, 1], 
+    [direction === 'left' ? -50 : 50, 0, 0, direction === 'left' ? -50 : 50]
   );
   
   const opacity = useTransform(
-    scrollYProgress, 
-    [0, 0.2, 0.8, 1], 
+    smoothProgress, 
+    [0, 0.25, 0.75, 1], 
     [0, 1, 1, 0]
   );
   
