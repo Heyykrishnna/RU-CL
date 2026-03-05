@@ -12,11 +12,4 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  theme: {
-    extend: {
-      colors: {
-        light: '#fcf7ef',
-      },
-    },
-  },
 })
