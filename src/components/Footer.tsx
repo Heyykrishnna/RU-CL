@@ -1,4 +1,4 @@
-import { Instagram, Facebook, X, Linkedin, Youtube, MapPin, Phone } from 'lucide-react';
+import { Instagram, Facebook, X, Linkedin, Youtube, MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
