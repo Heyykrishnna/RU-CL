@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import CircularGallery from './CircularGallery';
@@ -32,6 +32,14 @@ const row2Items = [
 
 export default function Gallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -103,7 +111,7 @@ export default function Gallery() {
           bend={0}
           textColor="#ffffff"
           borderRadius={0.06}
-          scrollSpeed={1}
+          scrollSpeed={isMobile ? 10 : 1}
           scrollEase={0.04}
         />
       </div>
@@ -127,7 +135,7 @@ export default function Gallery() {
           bend={0}
           textColor="#ffffff"
           borderRadius={0.06}
-          scrollSpeed={-1}
+          scrollSpeed={isMobile ? -10 : -1}
           scrollEase={0.04}
         />
       </div>
