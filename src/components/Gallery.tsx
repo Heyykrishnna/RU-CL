@@ -7,27 +7,27 @@ import BlurText from './BlurText';
 gsap.registerPlugin(ScrollTrigger);
 
 const row1Items = [
-  { image: 'https://framerusercontent.com/images/or5LAExZVFnZxtzcr2l40P4PE.jpg?width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/nq6s1WwiUbcUptZbDATAdwDlNA.jpg?width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/sDyjUcOWyBqcOAH47zI8vbpTqw.jpg?width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/T7KtIUVjyVSOypWisAdW7ZEdG0.jpg?width=6720&height=4480', text: '' },
-  { image: 'https://framerusercontent.com/images/L7d3klkaL6QFb05IUcM45oTxRrI.jpg?width=3744&height=2496', text: '' },
-  { image: 'https://framerusercontent.com/images/OL0ocYpVVJFbGKbzxVJYHlLrmM.jpg?scale-down-to=1024&width=2265&height=3368', text: '' },
-  { image: 'https://framerusercontent.com/images/yhEDHENrBEChIwsFmayZ8S9Oaw.jpg?width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/b4oE5B46CZ13bzVwVyxMfIMLQ.jpg?width=6720&height=4480', text: '' },
-  { image: 'https://framerusercontent.com/images/b1XuGG5UJlJQDdj1jafHeAwQfs.jpg?width=6000&height=4000', text: '' },
+  { image: 'https://framerusercontent.com/images/or5LAExZVFnZxtzcr2l40P4PE.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/nq6s1WwiUbcUptZbDATAdwDlNA.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/sDyjUcOWyBqcOAH47zI8vbpTqw.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/T7KtIUVjyVSOypWisAdW7ZEdG0.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/L7d3klkaL6QFb05IUcM45oTxRrI.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/OL0ocYpVVJFbGKbzxVJYHlLrmM.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/yhEDHENrBEChIwsFmayZ8S9Oaw.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/b4oE5B46CZ13bzVwVyxMfIMLQ.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/b1XuGG5UJlJQDdj1jafHeAwQfs.jpg', text: '' },
 ];
 
 const row2Items = [
-  { image: 'https://framerusercontent.com/images/JyoFPhlbGCeEoYluglkTCLa6qw.jpg?scale-down-to=512&width=4898&height=3265', text: '' },
-  { image: 'https://framerusercontent.com/images/NaQwlRUNLo1UOP0OBnCXbMMNiXU.jpg?scale-down-to=512&width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/Em54650Np5Bs5JfEnujdGgj2YVY.jpg?scale-down-to=512&width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/jhYBzyfntvRtmLrX1bpe6eSnBU.jpg?scale-down-to=512&width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/L7d3klkaL6QFb05IUcM45oTxRrI.jpg?width=3744&height=2496', text: '' },
-  { image: 'https://framerusercontent.com/images/OL0ocYpVVJFbGKbzxVJYHlLrmM.jpg?scale-down-to=1024&width=2265&height=3368', text: '' },
-  { image: 'https://framerusercontent.com/images/yhEDHENrBEChIwsFmayZ8S9Oaw.jpg?width=6000&height=4000', text: '' },
-  { image: 'https://framerusercontent.com/images/b4oE5B46CZ13bzVwVyxMfIMLQ.jpg?width=6720&height=4480', text: '' },
-  { image: 'https://framerusercontent.com/images/b1XuGG5UJlJQDdj1jafHeAwQfs.jpg?width=6000&height=4000', text: '' },
+  { image: 'https://framerusercontent.com/images/JyoFPhlbGCeEoYluglkTCLa6qw.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/NaQwlRUNLo1UOP0OBnCXbMMNiXU.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/Em54650Np5Bs5JfEnujdGgj2YVY.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/jhYBzyfntvRtmLrX1bpe6eSnBU.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/L7d3klkaL6QFb05IUcM45oTxRrI.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/OL0ocYpVVJFbGKbzxVJYHlLrmM.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/yhEDHENrBEChIwsFmayZ8S9Oaw.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/b4oE5B46CZ13bzVwVyxMfIMLQ.jpg', text: '' },
+  { image: 'https://framerusercontent.com/images/b1XuGG5UJlJQDdj1jafHeAwQfs.jpg', text: '' },
 ];
 
 export default function Gallery() {
