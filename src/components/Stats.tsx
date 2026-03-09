@@ -11,25 +11,31 @@ function ScrubCard({ children, direction, className }: { children: ReactNode; di
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 80,
+    damping: 25,
     restDelta: 0.001
   });
 
   const x = useTransform(
     smoothProgress, 
-    [0, 0.25, 0.75, 1], 
-    [direction === 'left' ? -50 : 50, 0, 0, direction === 'left' ? -50 : 50]
+    [0, 0.2, 0.8, 1], 
+    [direction === 'left' ? -60 : 60, 0, 0, direction === 'left' ? -60 : 60]
   );
   
   const opacity = useTransform(
     smoothProgress, 
-    [0, 0.25, 0.75, 1], 
+    [0, 0.2, 0.8, 1], 
     [0, 1, 1, 0]
+  );
+
+  const scale = useTransform(
+    smoothProgress,
+    [0, 0.2, 0.8, 1],
+    [0.97, 1, 1, 0.97]
   );
   
   return (
-    <motion.div ref={ref} style={{ x, opacity }} className={className}>
+    <motion.div ref={ref} style={{ x, opacity, scale }} className={className}>
       {children}
     </motion.div>
   );
@@ -49,10 +55,13 @@ export default function Stats() {
     <section id="stats" className="w-full bg-[#fcfaf5] py-14 px-4 md:px-12 lg:px-24 font-primary overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-6 md:gap-8">
         
+        {/* ── Row 1: Text card + Image card ── */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
           <ScrubCard 
             direction="left"
-            className="lg:col-span-6 xl:col-span-5 bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col justify-center items-start"
+            className="lg:col-span-6 xl:col-span-5 group bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col justify-center items-start
+              transition-all duration-500 ease-out
+              hover:shadow-[0_8px_40px_rgba(208,7,54,0.10)] hover:border-[#f0c6cf] hover:-translate-y-1"
           >
             <BlurText
               text="Approaching Rishihood"
@@ -67,38 +76,59 @@ export default function Stats() {
             <p className="text-[#555] text-base md:text-lg mb-8 leading-relaxed font-light">
               We shape learners for personal growth, professional excellence, and public impact in an industry-integrated, values-first learning environment.
             </p>
-            <button className="bg-[#d00736] hover:bg-[#c91738] text-white px-8 py-3.5 rounded-md font-medium transition-colors shadow-md">
-              Download Brochure
+            <button className="relative overflow-hidden bg-[#d00736] text-white px-8 py-3.5 rounded-md font-medium shadow-md
+              transition-all duration-300 ease-out
+              hover:shadow-[0_6px_24px_rgba(208,7,54,0.40)] hover:-translate-y-0.5 hover:bg-[#b8052e]
+              active:translate-y-0 active:shadow-md group/btn">
+              <span className="relative z-10">Download Brochure</span>
+              {/* shimmer sweep */}
+              <span className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
             </button>
           </ScrubCard>
+
           <ScrubCard 
             direction="right"
-            className="lg:col-span-6 xl:col-span-7 rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-gray-100 h-[300px] sm:h-[400px] lg:h-auto"
+            className="lg:col-span-6 xl:col-span-7 rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-gray-100 h-[300px] sm:h-[400px] lg:h-auto
+              group transition-all duration-500 ease-out
+              hover:shadow-[0_12px_48px_rgba(0,0,0,0.12)] hover:-translate-y-1 hover:border-gray-200"
           >
             <img 
               src="https://framerusercontent.com/images/7MyhsrkNz01pfukKf1ZVSf04z1M.jpg?scale-down-to=4096&width=6000&height=4000" 
               alt="Speaker" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
           </ScrubCard>
         </div>
+
+        {/* ── Row 2: Quote card ── */}
         <ScrubCard 
           direction="left"
-          className="bg-white rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden flex flex-col md:flex-row items-center pt-10 md:pt-0"
+          className="group bg-white rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 relative overflow-hidden flex flex-col md:flex-row items-center pt-10 md:pt-0
+            transition-all duration-500 ease-out
+            hover:shadow-[0_8px_40px_rgba(208,7,54,0.08)] hover:border-[#f5dde2] hover:-translate-y-0.5"
         >
-          <LeafSVG className="absolute right-0 bottom-0 w-[75px] md:w-[150px] h-auto opacity-30 translate-x-[20%] translate-y-[20%] pointer-events-none" />
+          {/* Animated warm glow on hover */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse at 80% 50%, rgba(208,7,54,0.04) 0%, transparent 70%)' }}
+          />
+
+          <LeafSVG className="absolute right-0 bottom-0 w-[75px] md:w-[150px] h-auto opacity-30 translate-x-[20%] translate-y-[20%] pointer-events-none
+            transition-all duration-700 group-hover:opacity-50 group-hover:scale-110 group-hover:translate-x-[15%]" />
           
           <div className="w-full md:w-1/3 flex justify-center items-end self-end z-10">
             <img 
               src="https://framerusercontent.com/images/wto8A0XGiC0azyEaFGUnuXm9I.png?width=838&height=1021" 
               alt="Swami Vivekananda" 
-              className="w-32 md:w-48 lg:w-[160px] h-auto object-contain drop-shadow-xl translate-y-2 md:translate-y-8"
+              className="w-32 md:w-48 lg:w-[160px] h-auto object-contain drop-shadow-xl translate-y-2 md:translate-y-8
+                transition-transform duration-500 ease-out group-hover:drop-shadow-2xl"
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
             />
           </div>
           
           <div className="w-full md:w-2/3 py-10 px-8 md:pr-24 md:pl-8 relative z-10 text-center md:text-left mt-4 md:mt-0">
-            <p className="text-[#666] text-md lg:text-[18px] leading-relaxed mb-4 font-medium max-w-5xl">
+            {/* Decorative quote mark */}
+            <span className="text-[80px] leading-none text-[#d00736]/10 font-serif absolute top-6 left-8 md:left-auto md:right-28 pointer-events-none select-none group-hover:text-[#d00736]/20 transition-colors duration-500">"</span>
+            <p className="text-[#666] text-md lg:text-[18px] leading-relaxed mb-4 font-medium max-w-5xl italic">
               "We must also remember that the leaders of our societies have never been either generals or kings, but Rishis... If there have been sages and Rishis in the past, be sure that there will be many now."
             </p>
             <p className="text-[#d47e60] font-semibold font-secondary italic text-md">
@@ -107,57 +137,92 @@ export default function Stats() {
           </div>
         </ScrubCard>
 
+        {/* ── Row 3: Stat cards ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <ScrubCard 
             direction="left"
-            className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]"
+            className="group bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]
+              transition-all duration-500 ease-out
+              hover:shadow-[0_8px_40px_rgba(208,7,54,0.10)] hover:border-[#f0c6cf] hover:-translate-y-1"
           >
-            <LeafSVG className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] md:w-[400px] h-auto opacity-30 translate-x-[20%] pointer-events-none" />
+            <LeafSVG className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] md:w-[400px] h-auto opacity-30 translate-x-[20%] pointer-events-none
+              transition-all duration-700 group-hover:opacity-50 group-hover:scale-105" />
+
+            {/* Background glow pulse on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(208,7,54,0.05) 0%, transparent 65%)' }}
+            />
             
-            <div className="relative z-10 flex items-center mb-2">
+            <div className="relative z-10 flex items-end mb-2">
               <BlurText
                 text="2,800"
                 delay={50}
                 animateBy="letters"
                 direction="bottom"
-                className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#111] leading-none tracking-tight"
+                className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#111] leading-none tracking-tight
+                  transition-colors duration-300 group-hover:text-[#d00736]"
               />
-              <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1">+</span>
+              <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1
+                transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-1 inline-block origin-bottom">+</span>
             </div>
-            <p className="text-[#555] text-base md:text-lg font-light max-w-xs relative z-10 mt-2">
+            <p className="text-[#555] text-base md:text-lg font-light max-w-xs relative z-10 mt-2 transition-colors duration-300 group-hover:text-[#333]">
               Learners & Alumni thriving impact-first network
             </p>
+
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 left-0 h-[3px] w-0 group-hover:w-full bg-linear-to-r from-[#d00736] to-[#ff6b35] transition-all duration-500 ease-out rounded-b-3xl" />
           </ScrubCard>
 
           <ScrubCard 
             direction="right"
-            className="bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]"
+            className="group bg-white rounded-2xl md:rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100 relative overflow-hidden flex flex-col justify-center min-h-[200px]
+              transition-all duration-500 ease-out
+              hover:shadow-[0_8px_40px_rgba(208,7,54,0.10)] hover:border-[#f0c6cf] hover:-translate-y-1"
           >
-            <LeafSVG className="absolute left-0 lg:right-20 bottom-0 lg:top-1/2 w-[160px] md:w-[250px] lg:w-[100px] h-auto opacity-80 lg:-translate-y-1/2 lg:translate-x-[20%] pointer-events-none translate-y-[20%] lg:!translate-y-[-50%]" />
+            <LeafSVG className="absolute left-0 lg:right-20 bottom-0 lg:top-1/2 w-[160px] md:w-[250px] lg:w-[100px] h-auto opacity-80 lg:-translate-y-1/2 lg:translate-x-[20%] pointer-events-none translate-y-[20%] lg:!translate-y-[-50%]
+              transition-all duration-700 group-hover:opacity-100 group-hover:scale-110" />
+
+            {/* Background glow */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at 80% 50%, rgba(208,7,54,0.05) 0%, transparent 65%)' }}
+            />
             
             <div className="relative z-10 flex flex-col lg:flex-row justify-between h-full gap-4 lg:gap-8">
               <div className="flex-1 flex flex-col justify-start lg:justify-center">
-                <div className="flex items-center mb-1 lg:mb-2">
+                <div className="flex items-end mb-1 lg:mb-2">
                   <BlurText
                     text="50"
                     delay={50}
                     animateBy="letters"
                     direction="bottom"
-                    className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#111] leading-none tracking-tight"
+                    className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#111] leading-none tracking-tight
+                      transition-colors duration-300 group-hover:text-[#d00736]"
                   />
-                  <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1">+</span>
+                  <span className="text-5xl md:text-6xl lg:text-[80px] font-semibold text-[#d00736] leading-none tracking-tight ml-1
+                    transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-1 inline-block origin-bottom">+</span>
                 </div>
-                <p className="text-[#555] text-base md:text-lg font-light lg:mt-2 max-w-[200px]">
+                <p className="text-[#555] text-base md:text-lg font-light lg:mt-2 max-w-[200px] transition-colors duration-300 group-hover:text-[#333]">
                   Institutional Mentors from
                 </p>
               </div>
 
               <div className="flex flex-row lg:flex-col items-center lg:items-start gap-4 lg:gap-6 relative z-10 lg:pr-8 lg:right-30 self-end lg:self-auto mt-auto lg:mt-0">
-                <img src="https://framerusercontent.com/images/mQQEZND7w1Dh4xGlRjVWzfyLbE.png?width=260&height=84" alt="Newton School" className="h-6 md:h-8 object-contain" onError={(e) => e.currentTarget.style.display='none'} />
-                
-                <img src="https://framerusercontent.com/images/rNRJqRLJhC6Nrl6BIVnjQWzwDcg.png?width=220&height=92" alt="KPMG" className="h-4 md:h-6 object-contain" />
+                <img 
+                  src="https://framerusercontent.com/images/mQQEZND7w1Dh4xGlRjVWzfyLbE.png?width=260&height=84" 
+                  alt="Newton School" 
+                  className="h-6 md:h-8 object-contain transition-all duration-300 grayscale group-hover:grayscale-0 group-hover:scale-105" 
+                  onError={(e) => e.currentTarget.style.display='none'} 
+                />
+                <img 
+                  src="https://framerusercontent.com/images/rNRJqRLJhC6Nrl6BIVnjQWzwDcg.png?width=220&height=92" 
+                  alt="KPMG" 
+                  className="h-4 md:h-6 object-contain transition-all duration-300 grayscale group-hover:grayscale-0 group-hover:scale-105" 
+                />
               </div>
             </div>
+
+            {/* Bottom accent line */}
+            <div className="absolute bottom-0 right-0 h-[3px] w-0 group-hover:w-full bg-linear-to-l from-[#d00736] to-[#ff6b35] transition-all duration-500 ease-out rounded-b-3xl" />
           </ScrubCard>
         </div>
 
