@@ -64,7 +64,7 @@ export default function Programs() {
         <div className="text-center mb-16 max-w-3xl">
           <BlurText
             text="Undergraduate Programs"
-            delay={100}
+            delay={40}
             animateBy="letters"
             direction="bottom"
             className="text-xl md:text-[32px] font-semibold justify-center text-[#d00736] mb-4"

@@ -2,68 +2,68 @@ import { Instagram, Facebook, X, Linkedin, Youtube, MapPin } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer 
+    <footer
       className="w-full bg-[#7a131f] bg-cover bg-center text-white font-primary relative overflow-hidden"
       style={{ backgroundImage: "url('https://framerusercontent.com/images/hH2gmaNjYV9HFgBScNHFf0dYc.png?width=4800&height=1224')" }}
-    >      
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-16 pb-8 flex flex-col relative z-10">
         <div className="flex flex-col justify-start lg:flex-row lg:justify-between items-start lg:items-center lg:gap-8 mb-8 lg:mb-12 pointer-events-none w-full">
-            
-            <div className="flex flex-row items-center justify-between lg:justify-start w-full lg:w-auto lg:gap-8 xl:gap-12 mb-8 lg:mb-0">
-                <div className="flex flex-col items-start w-[45%] lg:w-auto">
-                  <img 
-                      src="https://framerusercontent.com/images/NKvCUEL0ORnQgJto11PdvOykNk.png?scale-down-to=512&width=704&height=280" 
-                      alt="Rishihood University Logo" 
-                      className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert mb-2 md:mb-4 lg:mb-4" 
-                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                  <p className="text-[#e2e2e2] text-[10px] md:text-lg font-medium tracking-wider text-left">
-                    व्यक्ति | विचार | व्यवस्था
-                  </p>
-                </div>
 
-                <div className="w-px h-16 md:h-20 bg-white/30 mx-2 lg:hidden"></div>
-
-                <div className="hidden lg:block w-px h-[120px] bg-white/40"></div>
-
-                <div className="w-[50%] flex justify-end lg:hidden">
-                  <img 
-                    src="https://framerusercontent.com/images/IfI0ogz13RBjHXhiYwsz98JETHM.png?width=1606&height=537" 
-                    alt="Campus Outline" 
-                    className="w-full max-w-[180px] sm:max-w-xs h-auto object-contain drop-shadow-md brightness-0 invert opacity-90"
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                </div>
-
-                <div className="hidden lg:flex lg:w-auto justify-start pr-4 xl:pr-8">
-                  <img 
-                    src="https://framerusercontent.com/images/IfI0ogz13RBjHXhiYwsz98JETHM.png?width=1606&height=537" 
-                    alt="Campus Outline" 
-                    className="w-full max-w-sm lg:max-w-md xl:max-w-[420px] h-auto object-contain drop-shadow-md brightness-0 invert"
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                </div>
-
-                <div className="hidden lg:block w-px h-[120px] bg-white/40"></div>
+          <div className="flex flex-row items-center justify-between lg:justify-start w-full lg:w-auto lg:gap-8 xl:gap-12 mb-8 lg:mb-0">
+            <div className="flex flex-col items-start w-[45%] lg:w-auto">
+              <img
+                src="https://framerusercontent.com/images/NKvCUEL0ORnQgJto11PdvOykNk.png?scale-down-to=512&width=704&height=280"
+                alt="Rishihood University Logo"
+                className="h-10 md:h-14 lg:h-16 object-contain brightness-0 invert mb-2 md:mb-4 lg:mb-4"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+              <p className="text-[#e2e2e2] text-[10px] md:text-lg font-medium tracking-wider text-left">
+                व्यक्ति | विचार | व्यवस्था
+              </p>
             </div>
 
-            <div className="w-full h-px bg-white/20 mb-6 lg:hidden"></div>
+            <div className="w-px h-16 md:h-20 bg-white/30 mx-2 lg:hidden"></div>
 
-            <div className="flex flex-row justify-between lg:justify-end gap-8 md:gap-24 lg:gap-16 w-full lg:w-auto pointer-events-auto px-1 md:px-0">
-                <div className="flex flex-col gap-3 lg:w-auto">
-                  <h4 className="font-semibold text-[16px] md:text-lg text-white">Resources</h4>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Blogs</a>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Events</a>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Media</a>
-                </div>
-                <div className="flex flex-col gap-3 lg:w-auto">
-                  <h4 className="font-semibold text-[16px] md:text-lg text-white">Quick Links</h4>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Our Story</a>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Schedule Campus Visit</a>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Mandatory Disclosures</a>
-                  <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Contact Us</a>
-                </div>
-            </div> 
+            <div className="hidden lg:block w-px h-[120px] bg-white/40"></div>
+
+            <div className="w-[50%] flex justify-end lg:hidden">
+              <img
+                src="https://framerusercontent.com/images/IfI0ogz13RBjHXhiYwsz98JETHM.png?width=1606&height=537"
+                alt="Campus Outline"
+                className="w-full max-w-[180px] sm:max-w-xs h-auto object-contain drop-shadow-md brightness-0 invert opacity-90"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+            </div>
+
+            <div className="hidden lg:flex lg:w-auto justify-start pr-4 xl:pr-8">
+              <img
+                src="https://framerusercontent.com/images/IfI0ogz13RBjHXhiYwsz98JETHM.png?width=1606&height=537"
+                alt="Campus Outline"
+                className="w-full max-w-sm lg:max-w-md xl:max-w-[420px] h-auto object-contain drop-shadow-md brightness-0 invert"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+            </div>
+
+            <div className="hidden lg:block w-px h-[120px] bg-white/40"></div>
+          </div>
+
+          <div className="w-full h-px bg-white/20 mb-6 lg:hidden"></div>
+
+          <div className="flex flex-row justify-between lg:justify-end gap-8 md:gap-24 lg:gap-16 w-full lg:w-auto pointer-events-auto px-1 md:px-0">
+            <div className="flex flex-col gap-3 lg:w-auto">
+              <h4 className="font-semibold text-[16px] md:text-lg text-white">Resources</h4>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Blogs</a>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Events</a>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Media</a>
+            </div>
+            <div className="flex flex-col gap-3 lg:w-auto">
+              <h4 className="font-semibold text-[16px] md:text-lg text-white">Quick Links</h4>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Our Story</a>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Schedule Campus Visit</a>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Mandatory Disclosures</a>
+              <a href="#" className="text-white hover:text-white transition-colors text-[14px] md:text-sm font-light">Contact Us</a>
+            </div>
+          </div>
         </div>
 
         <div className="w-full h-px bg-white/20 mb-6"></div>

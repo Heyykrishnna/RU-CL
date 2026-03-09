@@ -7,6 +7,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
 import Programs from './components/Programs';
+// import Experience from './components/Experience';
 import Footer from './components/Footer';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Hero />
       <Stats />
       <Programs />
+      {/* <Experience /> */}
       <Footer />
     </div>
   );
