@@ -62,7 +62,7 @@ export default function Hero() {
   }, [currentSlide]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-80px)] overflow-hidden bg-black font-primary flex flex-col">
+    <div id="hero" className="relative w-full h-[calc(100vh-80px)] overflow-hidden bg-black font-primary flex flex-col">
       <AnimatePresence initial={false}>
         <motion.div
           key={currentSlide}

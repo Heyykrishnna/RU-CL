@@ -291,6 +291,7 @@ export default function Experience() {
 
   return (
     <section
+      id="experience"
       ref={containerRef}
       className="w-full bg-[#fcf7ef] py-24 md:py-32 font-primary relative overflow-hidden"
     >

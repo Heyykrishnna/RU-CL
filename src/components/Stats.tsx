@@ -46,7 +46,7 @@ export default function Stats() {
   );
 
   return (
-    <section className="w-full bg-[#fcfaf5] py-14 px-4 md:px-12 lg:px-24 font-primary overflow-hidden">
+    <section id="stats" className="w-full bg-[#fcfaf5] py-14 px-4 md:px-12 lg:px-24 font-primary overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col gap-6 md:gap-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">

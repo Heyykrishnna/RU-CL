@@ -10,6 +10,7 @@ import Programs from './components/Programs';
 import Experience from './components/Experience';
 import Gallery from './components/Gallery';
 import Footer from './components/Footer';
+import SectionNav from './components/SectionNav';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
   return (
     <div className="min-h-screen font-primary bg-[#fcfaf5]">
       <Navbar />
+      <SectionNav />
       <Hero />
       <Stats />
       <Programs />

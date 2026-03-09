@@ -64,6 +64,7 @@ export default function Gallery() {
 
   return (
     <section
+      id="gallery"
       ref={sectionRef}
       className="w-full bg-[#fcf7ef] py-10 md:py-14 font-primary overflow-hidden relative"
     >

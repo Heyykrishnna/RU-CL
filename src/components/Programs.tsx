@@ -58,7 +58,7 @@ export default function Programs() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="w-full bg-white py-24 px-4 md:px-12 lg:px-24 font-primary">
+    <section id="programs" className="w-full bg-white py-24 px-4 md:px-12 lg:px-24 font-primary">
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
         <div className="text-center mb-16 max-w-3xl">
